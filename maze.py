@@ -16,7 +16,6 @@ class Node():
         self.y = y
         self.distance = distance
         self.visited = visited
-
     
 class Pen(turtle.Turtle):
     def __init__(self):
@@ -49,7 +48,6 @@ class Maze:
         self.maze = np.random.randint(1,100,size=(graphSize,graphSize))
         self.entrance = (0,0)
         self.generateMaze()
-        
 
     def generateMaze(self):
         visited = []
@@ -188,7 +186,6 @@ def dijkstra(mazeObject,destination_i,destination_j):
                     dmaze[i][j] = Node(i,j,0)
                     unvisited.add((i,j))
                 else:
-                    # unvisited.append(Node(i,j,math.inf))
                     cell = Node(i,j,math.inf)
                     dmaze[i][j] = cell
                     unvisited.add((i,j))

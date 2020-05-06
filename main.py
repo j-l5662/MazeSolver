@@ -1,6 +1,7 @@
-import maze
+from maze import Maze
 import dijkstra
 
 
 if __name__ == "__main__":
-    pass
+    maze = Maze(25)
+    
