@@ -1,6 +1,7 @@
 from maze import Maze, drawMaze, solveMaze
 import argparse
 import dijkstra as d
+import astar as a
 from pen import Pen
 import turtle
 import io
@@ -14,7 +15,7 @@ def saveScreen(imageName):
     img.save(imageName,format="PNG")
 
 if __name__ == "__main__":
-    maze = Maze(25)
+    maze = Maze(25,random = True)
 
     blackPen = Pen()
     greenPen = Pen()
@@ -33,12 +34,13 @@ if __name__ == "__main__":
     drawMaze(mazeArray,blackPen,greenPen,maze.exit)
 
     turtle.ht()
-    saveScreen("preMaze.png")
+    # saveScreen("preMaze.png")
 
-    distance, dmaze = d.dijkstra(maze,maze.exit[0],maze.exit[1],verbose=True)
-    saveScreen("preMaze_d.png")
-    solveMaze(maze,dmaze,redPen,maze.exit[0],maze.exit[1],distance)
-    saveScreen("postMaze.png")
+    # distance, dmaze = d.dijkstra(maze,maze.exit[0],maze.exit[1],verbose=True)
+    a.aStar(maze,maze.entrance,maze.exit,verbose=True)
+    # saveScreen("preMaze_d.png")
+    # solveMaze(maze,dmaze,redPen,maze.exit[0],maze.exit[1],distance)
+    # saveScreen("postMaze.png")
     while True:
         pass
     

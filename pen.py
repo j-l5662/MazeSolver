@@ -8,3 +8,9 @@ class Pen(turtle.Turtle):
         self.color("black")
         self.penup()
         self.speed(0)
+
+    def draw(self, x, y, coordinate):
+        screenX = -coordinate + ((y + 1) * 24)
+        screenY = coordinate - ((x + 1) * 24)
+        self.goto(screenX,screenY)
+        self.stamp()

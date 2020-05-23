@@ -36,10 +36,7 @@ def dijkstra(mazeObject,destination_i,destination_j,verbose=False):
             cell = dmaze[neighbor[0]][neighbor[1]]
             if not cell.visited:
                 if verbose and not (x == 0 and y == 0) and not (x == destination_i and y == destination_j):
-                        screenX = -300 + ((y + 1) * 24)
-                        screenY = 300 - ((x + 1) * 24)
-                        pen.goto(screenX,screenY)
-                        pen.stamp()
+                        pen.draw(x,y,300)
                 distance = 1 + dmaze[x][y].distance
                 if distance < cell.distance:
                     cell.distance = distance

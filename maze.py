@@ -7,17 +7,22 @@ import math
 import os
 import io
 import dijkstra as d
-
+import turtle
+from pen import Pen
 
 class Maze:
-    def __init__(self,graphSize):
+    def __init__(self,graphSize,random=True):
 
         self.size = graphSize
-        self.maze = np.random.randint(1,100,size=(graphSize,graphSize))
-        self.entrance = (0,0)
-        self.generateMaze()
+        if random:
+            self.entrance = (0,0)
+            self.maze = np.random.randint(1,100,size=(graphSize,graphSize))
+            self.generateRandomMaze()
+        else:
+            self.entrance = (0,0)
+            self.exit = (graphSize-1,graphSize-1)
 
-    def generateMaze(self):
+    def generateRandomMaze(self):
         visited = []
         x = 0
         y = 0
@@ -164,32 +169,28 @@ def solveMaze(mazeObject,dmaze,pen,exitX,exitY,distance):
         pen.stamp()   
     
 if __name__ == "__main__":
-    # g = Maze(25)
-    # blackPen = Pen()
-    # greenPen = Pen()
-    # redPen = Pen()
+    maze = Maze(5,False)
+    test_maze = [[0,0,0,0,0],[0,0,0,0,0],[1,1,1,1,0],[0,0,0,0,0],[0,0,0,0,0]]
 
-    # blackPen.color("black")
-    # greenPen.color("green")
-    # redPen.color("red")
-    # redPen.ht()
-    # wn = turtle.Screen()
-    # wn.bgcolor("white")
-    # wn.setup(800,800)
+    maze.maze = np.asarray(test_maze)
 
-    # mazeArray = g.drawMaze()
+    maze.printMaze()
 
-    # drawMaze(mazeArray,blackPen,greenPen,g.exit)
-    
+    blackPen = Pen()
+    greenPen = Pen()
+    redPen = Pen()
 
-    distance, dmaze = d.dijkstra(g,g.exit[0],g.exit[1])
-    solveMaze(g,dmaze,redPen,g.exit[0],g.exit[1],distance)
+    blackPen.color("black")
+    greenPen.color("green")
+    redPen.color("red")
+    wn = turtle.Screen()
+    wn.bgcolor("gray")
+    wn.setup(800,800)
 
-    ts = turtle.getscreen()
-    ps = ts.getcanvas().postscript(colormode='color')
-    out = io.BytesIO()
-    img = Image.open(io.BytesIO(ps.encode('utf-8')))
-
-    img.save('postMaze.png',format="PNG")
+    mazeArray = maze.drawMaze()
+    drawMaze(mazeArray,blackPen,greenPen,maze.exit)
+    print(maze.exit[0])
+    distance, dmaze = d.dijkstra(maze,maze.exit[0],maze.exit[1],verbose=True)
+    solveMaze(maze,dmaze,redPen,maze.exit[0],maze.exit[1],distance)
     while True:
         pass
