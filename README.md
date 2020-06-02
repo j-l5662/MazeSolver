@@ -33,6 +33,11 @@ Dijkstra Implementation
 ![](res/dijkstra.gif)
 
 
+A* Implementation
+
+![](res/astar.gif)
+
+
 ## Future Implementations
 
  - Implement a drawing GUI to allow users to draw their own mazes or utilize a randomized maze.
