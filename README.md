@@ -28,6 +28,10 @@ For Macs install ghostscript to convert the turtle canvas from a postscript file
 
 ```python main.py```
 
+Dijkstra Implementation
+
+![](res/dijkstra.gif)
+
 
 ## Future Implementations
 
